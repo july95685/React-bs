@@ -1,0 +1,63 @@
+[
+  {
+    "key": "aapl",
+    "ticker" : "aapl",
+    "Company-Name" : "Apple Inc.",
+    "Exchange-Name" : "NMS",
+    "previous_close_price" : 101.1200
+  }, {
+    "key": "axp",
+    "ticker" : "axp",
+    "Company-Name" : "American Express Company Common",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 59.0500
+  }, {
+    "key": "ba",
+    "ticker" : "ba",
+    "Company-Name" : "Boeing Company (The) Common Sto",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 122.8600
+  }, {
+    "key": "cat",
+    "ticker" : "cat",
+    "Company-Name" : "Caterpillar, Inc. Common Stock",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 71.8700
+  }, {
+    "key": "csco",
+    "ticker" : "csco",
+    "Company-Name" : "Cisco Systems, Inc.",
+    "Exchange-Name" : "NMS",
+    "previous_close_price" : 27.6100
+  }, {
+    "key": "cvx",
+    "ticker" : "cvx",
+    "Company-Name" : "Chevron Corporation Common Stoc",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 92.8200
+  }, {
+    "key": "dd",
+    "ticker" : "dd",
+    "Company-Name" : "E.I. du Pont de Nemours and Com",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 63.4500
+  }, {
+    "key": "dis",
+    "ticker" : "dis",
+    "Company-Name" : "Walt Disney Company (The) Commo",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 97.6600
+  }, {
+    "key": "ko",
+    "ticker" : "ko",
+    "Company-Name" : "Coca-Cola Company (The) Common ",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 44.8100
+  }, {
+    "key": "mmm",
+    "ticker" : "mmm",
+    "Company-Name" : "3M Company Common Stock",
+    "Exchange-Name" : "NYQ",
+    "previous_close_price" : 160.0900
+  }
+]
