@@ -53,8 +53,3 @@ first, `npm install`
           ├── Home.scss
           └── HomeRedux.js
 
-## blog
-
-  1. [项目进度](https://github.com/superSamChow/dowjones-project/issues/1)
-  2. [总结和心得](https://github.com/superSamChow/dowjones-project/issues/2)
-  3.修改开始

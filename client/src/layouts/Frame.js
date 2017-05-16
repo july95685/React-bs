@@ -13,7 +13,7 @@ export default function Frame(props) {
         {props.children}
       </Content>
       <Footer style={{ textAlign: 'center', minHeight: '10vh' }}>
-        powered by Ant Design ©2016 Created by Ant UED
+        powered by July95685 ©2017.04 
       </Footer>
     </Layout>
   )
