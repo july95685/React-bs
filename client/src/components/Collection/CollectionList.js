@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import { Table, Spin, message, Button, Icon } from 'antd'
 
+const { Column, ColumnGroup } = Table;
+
 const columns = [{
   title: 'Ticker-Name',
   dataIndex: 'ticker',
@@ -20,9 +22,17 @@ const columns = [{
 }, {
   title: 'last_update',
   render: () => '2017-3-10'
+}, {
+  title: 'Collection',
+  key: 'collection',
+  render: (text, record) => (
+    <span>
+      <a href="" >Remove</a>
+    </span>
+  ),
 }]
 
-class PreviewList extends Component {
+class CollectionList extends Component {
   static propTypes = {
     dowjonesList: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.bool,
@@ -32,6 +42,7 @@ class PreviewList extends Component {
     push: PropTypes.func
   }
 
+
   state = {
     selectedRowKeys: []
   }
@@ -39,7 +50,14 @@ class PreviewList extends Component {
   componentDidMount(){
     console.log(2);
     this.props.loadDowjones();
-    //this.props.loadCollectionago();
+    this.props.loadCollectionago();
+  }
+
+  handleCollection = (val,CollectionList) => {
+    console.log(val);
+    console.log(CollectionList)
+    this.props.delectCollection(val,this.props.collection);
+
   }
 
   handleSelectChange = (selectedRowKeys) => {
@@ -58,37 +76,40 @@ class PreviewList extends Component {
     push(`/detail?${items}`)
   }
 
-  collectionClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    const { push } = this.props
-    const { selectedRowKeys } = this.state
-    console.log(this.state);
-
-    push(`/collection`)
-  }
-
-  addCollection = (e) => {
-    let ref = new Wilddog("https://july95685.wilddogio.com/collection");
-    // ref.on("value", function(snapshot) {
-    //     console.log(snapshot.val());
-
-    //     //ref.push("c");
-    //  }, function (errorObject) {
-    //      console.log("The read failed: " + errorObject.code);
-    //  });
-    ref.push("MMM");
-    ref.push("AXP");
-  }
-
 
   render(){
     const {
       loading,
       error,
       dowjonesList,
+      collection
     } = this.props
+
+    let testArray = ["AXP","CAT"];
+    let CollectionList = [];
+    console.log(dowjonesList);
+    console.log(collection);
+    // if(collection){
+    //   console.log(typeof(collection));
+    //   for(val in collection){
+    //     console.log(val);
+    //   }
+    // }
+    if(dowjonesList && collection){
+      dowjonesList.forEach(function(val,ind){
+        val.key = val.key.toUpperCase();
+        collection.forEach(function(value){
+          if(value == val.key){
+            CollectionList.push(val);
+          }
+        })
+        // if(val.key.toUpperCase() == "AXP"){
+        //   CollectionList.push(val);
+        // }
+      })
+    }
+
+    console.log(CollectionList);
 
     const { selectedRowKeys } = this.state
 
@@ -102,7 +123,7 @@ class PreviewList extends Component {
     let table = (
       <Table 
         columns={columns} 
-        dataSource={dowjonesList}
+        dataSource={CollectionList}
         rowSelection={rowSelection}
       />
     )
@@ -136,26 +157,41 @@ class PreviewList extends Component {
           <span style={{ marginLeft: 8 }}>
             {hasSelected ? `选择了${selectedRowKeys.length}条数据` : ''}
           </span>
-          <div style = {{ float: "right" }}>
-           <Button 
-            type="primary" 
-            onClick={this.collectionClick}
-            loading={loading}
-            icon="collection"
-          >
-            我的收藏
-          </Button></div>
         </div>
-        {table}
-         <Button 
-          type="primary" 
-          onClick={this.addCollection}
-        >
-          添加测试
-        </Button>
+        <Table dataSource={CollectionList}
+        rowSelection={rowSelection}>
+          <Column
+            title="Ticker-Name"
+            dataIndex="ticker"
+          />
+          <Column
+            title="Company-Name"
+            dataIndex="Company-Name"
+          />
+          <Column
+            title="Exchange-Name"
+            dataIndex="Exchange-Name"
+          />
+          <Column
+            title="Volume"
+            dataIndex="volume"
+          />
+          <Column
+            title="previous_close_price"
+            dataIndex="previous_close_price"
+          />
+          <Column
+            title="Collection"
+            render={(text, record) => (
+              <span>
+                <a onClick={this.handleCollection.bind(this,text,CollectionList)}>Remove from Collection</a>
+              </span>
+            )}
+          />
+        </Table>
       </div>
     )
   }
 }
 
-export default PreviewList
+export default CollectionList

@@ -6,15 +6,15 @@ import { push } from 'react-router-redux'
 import { Breadcrumb } from 'antd'
 const BreadItem = Breadcrumb.Item
 
-import { listActions } from './HomeRedux'
-import PreviewList from '../components/Home/PreviewList'
+import { listActions } from './CollectionRedux'
+import CollectionList from '../components/Collection/CollectionList'
 
 
 const ref = new Wilddog("https://july95685.wilddogio.com/");
 
-// console.log(222);
 
-class Home extends Component {
+
+class Collection extends Component {
 
   static propTypes = {
     list: PropTypes.object,
@@ -29,14 +29,13 @@ class Home extends Component {
     } = this.props
     console.log(this.props);
 
-   
-
     return (
-      <div className="home">
+      <div>
         <Breadcrumb style={{ marginBottom:'16px' }}>
-          <BreadItem>Home</BreadItem>
+          <BreadItem><a href="/">Home</a></BreadItem>
+          <BreadItem>collection  </BreadItem>
         </Breadcrumb>
-        <PreviewList
+        <CollectionList
           {...list}
           {...listActions}
           push={push}
@@ -48,11 +47,11 @@ class Home extends Component {
 
 export default connect(state => {
   return {
-    list: state.home.list
+    list: state.collection.list
   }
 }, dispatch => {
   return {
     listActions: bindActionCreators(listActions, dispatch),
     push: bindActionCreators(push, dispatch)
   }
-})(Home)
+})(Collection)

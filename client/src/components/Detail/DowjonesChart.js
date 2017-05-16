@@ -24,11 +24,13 @@ class DowjonesChart extends Component {
   chart = createChart(plot, sparkline)
 
   componentDidMount(){
+    console.log(4);
     const { 
       search,
       loadDowjonesDetail
     } = this.props
-    const items = search.trim().slice(1).split('&')
+    const items = search.trim().slice(1).split('&');
+    console.log(items);
     loadDowjonesDetail(items)
 
     this.chart.renderTo('#chart')
@@ -54,6 +56,7 @@ class DowjonesChart extends Component {
   }
 
   render(){
+    console.log(5);
     const {
       loading,
       error

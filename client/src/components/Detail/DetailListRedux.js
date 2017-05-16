@@ -16,6 +16,7 @@ const SET_TIME_RANGE = 'SET_TIME_RANGE'
 
 export function loadDowjonesDetail(items){
   const urls = items.map(e => (`api/dowjones/${e}.json`))
+  console.log(urls);
   return {
     types: [LOAD_DOWJONES_DETAIL, LOAD_DOWJONES_DETAIL_SUCCESS, LOAD_DOWJONES_DETAIL_ERROR],
     urls

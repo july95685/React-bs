@@ -13,10 +13,9 @@ import FetchMiddleware from './middleware/redux-composable-fetch'
 
 const finalCreateStore = compose(
   applyMiddleware(
+    FetchMiddleware,
     ThunkMiddleware,
     PromiseMiddleware,
-    FetchMiddleware,
-
     routerMiddleware(hashHistory)
   )
 )(createStore)

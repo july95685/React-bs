@@ -40,10 +40,19 @@ export function init(chats){
 
 export function loadCollectionago(){
   return function(dispatch){
-      ref = new Wilddog("https://july95685.wilddogio.com/");
+      ref = new Wilddog("https://july95685.wilddogio.com/collection");
       ref.on("value", function(snapshot) {
            console.log(snapshot.val());
-           dispatch(init(snapshot.val()));
+
+           let snaphostArray = [];
+           snapshot.forEach(function(value){
+            console.log(value.val());
+            snaphostArray.push(value.val());
+           })
+           let chat ={
+            "collection":snaphostArray
+           }
+           dispatch(init(chat));
        }, function (errorObject) {
            console.log("The read failed: " + errorObject.code);
        });
@@ -61,15 +70,40 @@ export function loadCollectionago(){
   
 }
 
+export function delectCollection(key,list){
+  return function(dispatch){
+    ref = new Wilddog("https://july95685.wilddogio.com/collection");
+    console.log(key , list);
+    list.forEach(function(val,index){
+      if(key.key == val){
+        console.log(index);
+        list.splice(index,1);
+      }
+    })
+    //console.log(list);
+    let chat ={
+      "collection":list
+    }
+    ref.set({});
+    list.forEach(function(val,index){
+      ref.push(val);
+    })
+    dispatch(init(chat));
+
+  }
+}
+
 function previewList(state = initialState, action) {
   switch (action.type) {
   case LOAD_DOWJONES: 
+    console.log(21);
     return {
       ...state,
       loading: true,
       error: false
     }
   case LOAD_DOWJONES_SUCCESS: 
+    console.log(22);
     return {
       ...state,
       loading: false,
@@ -77,6 +111,7 @@ function previewList(state = initialState, action) {
       dowjonesList: action.payload
     }
   case LOAD_DOWJONES_ERROR:
+    console.log(23);
     return {
       ...state,
       loading: false,
